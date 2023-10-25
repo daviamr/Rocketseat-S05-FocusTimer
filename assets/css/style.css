@@ -1,0 +1,49 @@
+/* header */
+header img {
+    position: absolute;
+    top: 3.2rem;
+    right: 3.2rem;
+
+    cursor: pointer;
+}
+
+/* main */
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.flex,
+.buttons_wrapper,
+.main_content_wrapper {
+    display: flex;
+}
+
+.main_content_wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+#time {
+    font-size: 9.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--white-500);
+}
+
+.buttons_wrapper {
+    background: var(--black-200);
+    border-radius: 10rem;
+    padding: 2.2rem 4rem;
+
+    width: max-content;
+    gap: 1.6rem;
+}
+
+.buttons_wrapper a {
+    cursor: pointer;
+}

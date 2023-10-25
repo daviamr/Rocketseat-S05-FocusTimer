@@ -1,0 +1,38 @@
+/* default imports */
+@import './style.css';
+@import './reset.css';
+
+/* default styles */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    --roboto: 'Roboto', sans-serif;
+    --white-500: #F8F8FC;
+    --black-200: #242424;
+    --black-300: #121214;
+    --black: #000000;
+    --blue: #42D3FF;
+
+}
+
+body {
+    position: relative;
+    font-family: var(--roboto);
+    font-size: 1.6rem;
+    background: var(--black-300);
+}
+
+/* default classes */
+.limiter {
+    max-width: 144rem;
+    margin: 0 auto;
+
+    padding: 0 2.2rem;
+}
+
+.hide {
+    display: none;
+}
