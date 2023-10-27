@@ -17,7 +17,8 @@ main {
 
 .flex,
 .buttons_wrapper,
-.main_content_wrapper {
+.main_content_wrapper,
+.time_content {
     display: flex;
 }
 
@@ -27,12 +28,25 @@ main {
     gap: 1.6rem;
 }
 
-#time {
+.time_content {
+    align-items: center;
+    justify-content: center;
+}
+
+#minutes,
+.separator,
+#seconds {
     font-size: 9.6rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     color: var(--white-500);
+    background: none;
+    width: 12rem;
+}
+
+.separator {
+    width: max-content;
 }
 
 .buttons_wrapper {

@@ -1,5 +1,4 @@
 const body = document.getElementById('body');
-export const time = document.getElementById('time');
 
 export const icon = {
     icon: document.getElementById('modeH'),
@@ -23,5 +22,5 @@ export function toggleMode() {
 function modeStyleHandler(iconImg, screenColor, textColor) {
     icon.icon.setAttribute('src', `${iconImg}`);
     body.style.background = `${screenColor}`;
-    time.style.color = `${textColor}`;
+    // time.style.color = `${textColor}`;
 }
