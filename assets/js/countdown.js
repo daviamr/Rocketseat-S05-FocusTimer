@@ -16,7 +16,7 @@ const audio = {
 }
 export let time = {
     fixedTime: 60,
-    minutes: 60 / 60,
+    minutes: 1500 / 60,
     seconds: 0,
     pause: false,
     interval: null
@@ -40,11 +40,6 @@ const countdown = () => {
 showTimerOnScreen();
 
 //functions
-function showTimerOnScreen() {
-    inputMinutes.value = formatter(inputMinutes, time.minutes);
-    inputSeconds.value = formatter(inputSeconds, time.seconds);
-}
-
 export function initialize() {
     if (time.pause) {
         pauseTimer();
@@ -84,6 +79,9 @@ export function timerInteraction() {
 
     //saving the new input value on focusout
     inputMinutes.addEventListener('focusout', () => {
+
+        inputMinutes.setAttribute('disabled', '1');
+
         let length = inputMinutes.value.toString().length;
 
         if (length > 2 || length === 0) {
@@ -103,4 +101,9 @@ function formatter(input, element) {
 
 function handlerIcon(tag, pathIcon) {
     return tag.setAttribute('src', `${pathIcon}`);
+}
+
+function showTimerOnScreen() {
+    inputMinutes.value = formatter(inputMinutes, time.minutes);
+    inputSeconds.value = formatter(inputSeconds, time.seconds);
 }

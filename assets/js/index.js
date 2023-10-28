@@ -6,7 +6,6 @@ import { playBtn, initialize, timerBtn, timerInteraction, inputMinutes } from ".
 //mode handler
 icon.icon.addEventListener('click', toggleMode);
 
-//timer
+//timer events
 playBtn.addEventListener('click', initialize);
-
 timerBtn.addEventListener('click', timerInteraction)
