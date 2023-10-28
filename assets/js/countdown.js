@@ -47,7 +47,7 @@ export function initialize() {
     }
 
     time.minutes === 0 && time.seconds === 0 ?
-        alert('Tempo esgotado! \nResete o cronometrô.') : startTimer();
+        alert('Tempo esgotado! \nResete o cronômetro.') : startTimer();
 }
 
 function startTimer() {
