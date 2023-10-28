@@ -1,6 +1,7 @@
-const inputMinutes = document.getElementById('minutes');
-const inputSeconds = document.getElementById('seconds');
-const playBtn = document.getElementById('play');
+export const inputMinutes = document.getElementById('minutes');
+export const inputSeconds = document.getElementById('seconds');
+export const playBtn = document.getElementById('play');
+export const timerBtn = document.getElementById('timer');
 const icon = {
     play: `./assets/img/play_blue.svg`,
     pause: `./assets/img/pause_blue.svg`,
@@ -13,7 +14,7 @@ const audio = {
     alert: new Audio(`./assets/audio/kichen-timer.mp3`),
     music: new Audio(`./assets/audio/bg-audio.mp3`)
 }
-const time = {
+export let time = {
     fixedTime: 60,
     minutes: 60 / 60,
     seconds: 0,
@@ -35,9 +36,6 @@ const countdown = () => {
     showTimerOnScreen()
 }
 
-//events
-playBtn.addEventListener('click', initialize);
-
 //performing standard functions
 showTimerOnScreen();
 
@@ -47,7 +45,7 @@ function showTimerOnScreen() {
     inputSeconds.value = formatter(inputSeconds, time.seconds);
 }
 
-function initialize() {
+export function initialize() {
     if (time.pause) {
         pauseTimer();
         return
@@ -77,6 +75,25 @@ function stopTimer() {
     audio.alert.play();
 }
 
+export function timerInteraction() {
+    pauseTimer();
+
+    inputMinutes.value = '';
+    inputMinutes.removeAttribute('disabled');
+    inputMinutes.focus();
+
+    //saving the new input value on focusout
+    inputMinutes.addEventListener('focusout', () => {
+        let length = inputMinutes.value.toString().length;
+
+        if (length > 2 || length === 0) {
+            inputMinutes.value = time.fixedTime;
+            time.minutes = time.fixedTime;
+        } else {
+            time.minutes = inputMinutes.value;
+        }
+    })
+}
 //utils
 function formatter(input, element) {
     element = element.toString();
