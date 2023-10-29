@@ -58,6 +58,10 @@ main {
     gap: 1.6rem;
 }
 
-.buttons_wrapper a {
+.buttons_wrapper button {
+    background: none;
+    border: none;
+    outline: none;
     cursor: pointer;
+    padding: 0;
 }
