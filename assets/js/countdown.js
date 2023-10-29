@@ -2,7 +2,7 @@ export const inputMinutes = document.getElementById('minutes');
 export const inputSeconds = document.getElementById('seconds');
 export const playBtn = document.getElementById('play');
 export const timerBtn = document.getElementById('timer');
-const speakerBtn = document.getElementById('speaker');
+export const speakerBtn = document.getElementById('speaker');
 const icon = {
     play: `./assets/img/play_blue.svg`,
     pause: `./assets/img/pause_blue.svg`,
@@ -16,8 +16,8 @@ const audio = {
     alert: new Audio(`./assets/audio/kichen-timer.mp3`),
     music: new Audio(`./assets/audio/bg-audio.mp3`)
 }
-export let time = {
-    fixedTime: 1500 / 60,
+export const time = {
+    maxTime: 3600 / 60,
     minutes: 1500 / 60,
     seconds: 0,
     pause: false,
@@ -39,7 +39,6 @@ const countdown = () => {
 }
 
 //performing standard functions
-speakerBtn.addEventListener('click', bgAudioPlay);
 showTimerOnScreen();
 
 //functions
@@ -72,13 +71,11 @@ function pauseTimer() {
 function stopAndReset() {
     pauseTimer()
     handlerIcon(timerBtn, icon.timer)
-
-    time.minutes = time.fixedTime;
-    time.seconds = 0;
-
-    inputMinutes.value = time.fixedTime;
-    inputSeconds.value = formatter(inputSeconds, 0);
     clearInterval(time.interval);
+
+    time.minutes = 25;
+    time.seconds = 0;
+    showTimerOnScreen()
 }
 
 function timeIsOver() {
@@ -109,15 +106,15 @@ export function timerInteraction() {
         let length = inputMinutes.value.toString().length;
 
         if (length > 2 || length === 0 || inputMinutes.value > 60) {
-            inputMinutes.value = time.fixedTime;
-            time.minutes = time.fixedTime;
+            inputMinutes.value = time.maxTime;
+            time.minutes = time.maxTime;
         } else {
             time.minutes = inputMinutes.value;
         }
     })
 }
 
-function bgAudioPlay() {
+export function bgAudioPlay() {
     const speakerAttr = speakerBtn.getAttribute('src');
 
     if (speakerAttr === icon.defaultSpeaker) {
