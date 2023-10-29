@@ -1,5 +1,5 @@
 import { toggleMode, icon } from "./mode.js";
-import { playBtn, initialize, timerBtn, timerInteraction, inputMinutes } from "./countdown.js";
+import { playBtn, initialize, timerBtn, timerInteraction } from "./countdown.js";
 
 //events
 
@@ -8,4 +8,4 @@ icon.icon.addEventListener('click', toggleMode);
 
 //timer events
 playBtn.addEventListener('click', initialize);
-timerBtn.addEventListener('click', timerInteraction)
+timerBtn.addEventListener('click', timerInteraction);

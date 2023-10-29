@@ -6,7 +6,8 @@ const speakerBtn = document.getElementById('speaker');
 const icon = {
     play: `./assets/img/play_blue.svg`,
     pause: `./assets/img/pause_blue.svg`,
-    stop: `./assets/img/pause_default.svg`,
+    stop: `./assets/img/stop_default.svg`,
+    timer: `./assets/img/timer_default.svg`,
     speaker: `./assets/img/speaker_blue.svg`,
     defaultSpeaker: `./assets/img/speaker_default.svg`
 }
@@ -16,7 +17,7 @@ const audio = {
     music: new Audio(`./assets/audio/bg-audio.mp3`)
 }
 export let time = {
-    fixedTime: 60,
+    fixedTime: 1500 / 60,
     minutes: 1500 / 60,
     seconds: 0,
     pause: false,
@@ -31,7 +32,7 @@ const countdown = () => {
     }
 
     if (time.minutes == 0 && time.seconds == 0) {
-        stopTimer();
+        timeIsOver();
     }
 
     showTimerOnScreen()
@@ -45,11 +46,14 @@ showTimerOnScreen();
 export function initialize() {
     if (time.pause) {
         pauseTimer();
+        handlerIcon(timerBtn, icon.timer);
         return
     }
 
     time.minutes === 0 && time.seconds === 0 ?
-        alert('Tempo esgotado! \nResete o cronômetro.') : startTimer();
+        alert('Tempo esgotado! \nResete o cronômetro.') :
+        startTimer()
+    handlerIcon(timerBtn, icon.stop);
 }
 
 function startTimer() {
@@ -65,14 +69,32 @@ function pauseTimer() {
     audio.pause.play();
 }
 
-function stopTimer() {
+function stopAndReset() {
+    pauseTimer()
+    handlerIcon(timerBtn, icon.timer)
+
+    time.minutes = time.fixedTime;
+    time.seconds = 0;
+
+    inputMinutes.value = time.fixedTime;
+    inputSeconds.value = formatter(inputSeconds, 0);
+    clearInterval(time.interval);
+}
+
+function timeIsOver() {
     handlerIcon(playBtn, icon.play);
     clearInterval(time.interval);
     time.pause = false;
     audio.alert.play();
 }
 
+
 export function timerInteraction() {
+    if (time.pause) {
+        stopAndReset();
+        return
+    }
+
     pauseTimer();
 
     inputMinutes.value = '';
