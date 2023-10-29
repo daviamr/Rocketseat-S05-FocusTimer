@@ -25,8 +25,8 @@ export const time = {
 }
 const countdown = () => {
     if (time.seconds === 0) {
-        time.seconds = 60;
-        time.minutes--
+        time.seconds = 59;
+        time.minutes--;
     } else {
         time.seconds--;
     }
@@ -35,7 +35,7 @@ const countdown = () => {
         timeIsOver();
     }
 
-    showTimerOnScreen()
+    showTimerOnScreen();
 }
 
 //performing standard functions
@@ -51,13 +51,13 @@ export function initialize() {
 
     time.minutes === 0 && time.seconds === 0 ?
         alert('Tempo esgotado! \nResete o cronômetro.') :
-        startTimer()
+        startTimer();
     handlerIcon(timerBtn, icon.stop);
 }
 
 function startTimer() {
     handlerIcon(playBtn, icon.pause);
-    time.interval = setInterval(countdown, 50);
+    time.interval = setInterval(countdown, 1000);
     time.pause = true;
 }
 
