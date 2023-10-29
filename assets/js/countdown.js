@@ -2,6 +2,7 @@ export const inputMinutes = document.getElementById('minutes');
 export const inputSeconds = document.getElementById('seconds');
 export const playBtn = document.getElementById('play');
 export const timerBtn = document.getElementById('timer');
+const speakerBtn = document.getElementById('speaker');
 const icon = {
     play: `./assets/img/play_blue.svg`,
     pause: `./assets/img/pause_blue.svg`,
@@ -37,6 +38,7 @@ const countdown = () => {
 }
 
 //performing standard functions
+speakerBtn.addEventListener('click', bgAudioPlay);
 showTimerOnScreen();
 
 //functions
@@ -84,13 +86,28 @@ export function timerInteraction() {
 
         let length = inputMinutes.value.toString().length;
 
-        if (length > 2 || length === 0) {
+        if (length > 2 || length === 0 || inputMinutes.value > 60) {
             inputMinutes.value = time.fixedTime;
             time.minutes = time.fixedTime;
         } else {
             time.minutes = inputMinutes.value;
         }
     })
+}
+
+function bgAudioPlay() {
+    const speakerAttr = speakerBtn.getAttribute('src');
+
+    if (speakerAttr === icon.defaultSpeaker) {
+        handlerIcon(speakerBtn, icon.speaker);
+        audio.music.play();
+        audio.music.loop = true;
+        return
+    }
+
+    handlerIcon(speakerBtn, icon.defaultSpeaker);
+    audio.music.pause();
+    audio.music.currentTime = 0;
 }
 //utils
 function formatter(input, element) {
